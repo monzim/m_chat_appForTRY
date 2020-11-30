@@ -54,8 +54,10 @@ class _SeachScreenState extends State<SeachScreen> {
       };
 
       DatabaseMethods().createChatRoom(chatRoomId, chatRoomMap);
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => ConversationScreen()));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ConversationScreen(chatRoomId)));
     } else {
       print('You cannot send message to yourself');
     }
