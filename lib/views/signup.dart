@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m_chat_app/helper/helperfunctions.dart';
 import 'package:m_chat_app/services/auth.dart';
 import 'package:m_chat_app/services/database.dart';
 import 'package:m_chat_app/views/chatRoomsScreen.dart';
@@ -34,6 +35,11 @@ class _SignUpState extends State<SignUp> {
         "email": emailTextEditingController.text,
       };
 
+      HelperFunctions.saveUserEmailSharedPrefrence(
+          emailTextEditingController.text);
+      HelperFunctions.saveUserNameSharedPrefrence(
+          userNameTextEditingController.text);
+
       setState(() {
         isLoading = true;
       });
@@ -45,6 +51,7 @@ class _SignUpState extends State<SignUp> {
         // print("${value.uid}");
 
         databaseMethods.uploadUserInfo(userInfoMap);
+        HelperFunctions.saveUserLoggedInSharedPrefrence(true);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => ChatRoom()));
       });

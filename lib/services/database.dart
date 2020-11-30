@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:m_chat_app/views/chatRoomsScreen.dart';
 
 class DatabaseMethods {
   getUserByUseName(String username) async {
@@ -9,19 +8,26 @@ class DatabaseMethods {
         .getDocuments();
   }
 
+  getUserByUseEmail(String userEmail) async {
+    return await Firestore.instance
+        .collection("users")
+        .where("email", isEqualTo: userEmail)
+        .getDocuments();
+  }
+
   uploadUserInfo(userMap) {
     Firestore.instance.collection('users').add(userMap).catchError((e) {
       print(e.toString());
     });
   }
-}
 
-createChatRoom(String chatroomId, chatRoomMap) {
-  Firestore.instance
-      .collection('ChatRoom')
-      .document(chatroomId)
-      .setData(chatRoomMap)
-      .catchError((e) {
-    print(e.toString());
-  });
+  createChatRoom(String chatRoomId, chatRoomMap) {
+    Firestore.instance
+        .collection('ChatRoom')
+        .document(chatRoomId)
+        .setData(chatRoomMap)
+        .catchError((e) {
+      print(e.toString());
+    });
+  }
 }

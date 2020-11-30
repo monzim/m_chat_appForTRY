@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HelperFunctions {
@@ -9,21 +7,35 @@ class HelperFunctions {
 
 // saving data to sharedpreference
 
-  static Future<void> saveUserLoggedInSharedPrefrence(
+  static Future<bool> saveUserLoggedInSharedPrefrence(
       bool isUserLoggedIn) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return await prefs.setBool(sharedPreferenceUserLoggedInKey, isUserLoggedIn);
   }
 
-  static Future<void> saveUserNameSharedPrefrence(String userName) async {
+  static Future<bool> saveUserNameSharedPrefrence(String userName) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return await prefs.setString(sharedPreferenceUserNameKey, userName);
   }
 
-  static Future<void> saveUserEmailSharedPrefrence(String userEmail) async {
+  static Future<bool> saveUserEmailSharedPrefrence(String userEmail) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return await prefs.setString(sharedPreferenceUserEmailKey, userEmail);
   }
 
-  // getting the data
+  // getting the data from SharedPreferences
+  static Future<bool> getUserLoggedInSharedPrefrence() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return await prefs.getBool(sharedPreferenceUserLoggedInKey);
+  }
+
+  static Future<String> getUserNameInSharedPrefrence() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return await prefs.getString(sharedPreferenceUserNameKey);
+  }
+
+  static Future<String> getUserEmailInSharedPrefrence() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return await prefs.getString(sharedPreferenceUserEmailKey);
+  }
 }
