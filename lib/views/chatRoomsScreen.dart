@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:m_chat_app/helper/authenticate.dart';
 import 'package:m_chat_app/helper/constants.dart';
 import 'package:m_chat_app/helper/helperfunctions.dart';
@@ -59,12 +60,34 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: HexColor("#45485A"),
       appBar: AppBar(
-        title: Image.asset(
-          "assets/images/logo.png",
-          height: 50,
+        backgroundColor: HexColor("#C27E8C"),
+        shadowColor: Colors.deepOrange[300],
+        title: Text(
+          'MChats',
+          style: TextStyle(
+            fontFamily: 'Texturina-Variable',
+            fontSize: 20,
+          ),
+        ),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Image.asset(
+            "assets/images/lll-1154.png",
+            height: 50,
+          ),
         ),
         actions: [
+          IconButton(
+              icon: Icon(Icons.auto_awesome_mosaic),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => InfoAboutAppPage()));
+                print('menu clicked');
+              }),
           GestureDetector(
             onTap: () {
               authMethods.signOut();
@@ -73,13 +96,15 @@ class _ChatRoomState extends State<ChatRoom> {
             },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Icon(Icons.exit_to_app),
+              child: Icon(Icons.arrow_forward_ios),
             ),
           ),
+          SizedBox(width: 10)
         ],
       ),
       body: chatRoomList(),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: HexColor("#1990FF"),
         onPressed: () {
           Navigator.push(
               context,
@@ -87,7 +112,7 @@ class _ChatRoomState extends State<ChatRoom> {
                 builder: (context) => SeachScreen(),
               ));
         },
-        child: Icon(Icons.search),
+        child: Icon(Icons.person_search, color: Colors.black),
       ),
     );
   }
@@ -107,30 +132,43 @@ class ChatRoomsTile extends StatelessWidget {
             MaterialPageRoute(
                 builder: (context) => ConversationScreen(chatRoomId)));
       },
-      child: Container(
-          color: Colors.black26,
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          child: Row(
-            children: [
-              Container(
-                height: 40,
-                width: 40,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(40)),
-                child: Text(
-                  '${userName.substring(0, 1).toUpperCase()}',
-                  style: mediumTexteStyle(),
-                ),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black26,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50),
+                topRight: Radius.circular(50),
               ),
-              SizedBox(width: 8),
-              Text(
-                userName,
-                style: mediumTexteStyle(),
-              )
-            ],
-          )),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Row(
+              children: [
+                Container(
+                  height: 40,
+                  width: 40,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: HexColor("#45485A"),
+                      borderRadius: BorderRadius.circular(40)),
+                  child: Text(
+                    '${userName.substring(0, 1).toUpperCase()}',
+                    style: mediumTexteStyle(),
+                  ),
+                ),
+                SizedBox(width: MediaQuery.of(context).size.width / 4.5),
+                Text(
+                  userName.toUpperCase(),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )
+              ],
+            )),
+      ),
     );
   }
 }

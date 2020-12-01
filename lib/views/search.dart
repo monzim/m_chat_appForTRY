@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:m_chat_app/helper/constants.dart';
 import 'package:m_chat_app/services/database.dart';
 import 'package:m_chat_app/views/conversation_screen.dart';
@@ -63,9 +64,14 @@ class _SeachScreenState extends State<SeachScreen> {
     }
   }
 
+  // ignore: non_constant_identifier_names
   Widget SearchTitle({String userName, String userEmail}) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      decoration: BoxDecoration(
+        color: HexColor("#FFFFFF"),
+        borderRadius: BorderRadius.only(topRight: Radius.circular(50)),
+      ),
       child: Row(
         children: [
           Column(
@@ -73,11 +79,11 @@ class _SeachScreenState extends State<SeachScreen> {
             children: [
               Text(
                 userName,
-                style: mediumTexteStyle(),
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
               ),
               Text(
                 userEmail,
-                style: mediumTexteStyle(),
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
               ),
             ],
           ),
@@ -109,41 +115,52 @@ class _SeachScreenState extends State<SeachScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarMain(context),
+      backgroundColor: HexColor("#BEBDBD"),
+      appBar: AppBar(
+        backgroundColor: HexColor("##59484B"),
+        centerTitle: true,
+        shadowColor: Colors.black87,
+        title: Image.asset(
+          "assets/images/lll-1154.png",
+          height: 50,
+        ),
+      ),
       body: Container(
         child: Column(
           children: [
-            Container(
-              color: Color(0x54FFFFFF),
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                        controller: searchTextEditingController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                            hintText: 'search user here...',
-                            hintStyle: TextStyle(color: Colors.white54),
-                            border: InputBorder.none)),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      initiateSearch();
-                    },
-                    child: Container(
-                        height: 40,
-                        width: 40,
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: [
-                              const Color(0x36FFFFFF),
-                              const Color(0x0FFFFFFF)
-                            ]),
-                            borderRadius: BorderRadius.circular(40)),
-                        child: Image.asset("assets/images/search_white.png")),
-                  )
-                ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: HexColor("#636161"),
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 5),
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: TextField(
+                          controller: searchTextEditingController,
+                          style: TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                              hintText: 'search user here...',
+                              hintStyle: TextStyle(color: Colors.white54),
+                              border: InputBorder.none)),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    IconButton(
+                        icon: Icon(Icons.search),
+                        splashRadius: 20,
+                        // color: Colors.blue,
+                        iconSize: 35,
+                        onPressed: () {
+                          initiateSearch();
+                        }),
+                  ],
+                ),
               ),
             ),
             searchList()

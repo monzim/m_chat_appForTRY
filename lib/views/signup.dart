@@ -114,14 +114,23 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       SizedBox(height: 8),
-                      Container(
-                        alignment: Alignment.centerRight,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ForgotPassSorry(),
+                              ));
+                        },
                         child: Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          child: Text(
-                            'Forgot Password?',
-                            style: simpleTexteStyle(),
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            child: Text(
+                              'Forgot Password?',
+                              style: simpleTexteStyle(),
+                            ),
                           ),
                         ),
                       ),
@@ -144,19 +153,28 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       SizedBox(height: 16),
-                      Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.white,
-                        ),
-                        child: Text(
-                          'Sign Up with Google',
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 17,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PageSorry(),
+                              ));
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.white,
+                          ),
+                          child: Text(
+                            'Sign Up with Google',
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 17,
+                            ),
                           ),
                         ),
                       ),

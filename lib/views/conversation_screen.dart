@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:m_chat_app/helper/constants.dart';
 import 'package:m_chat_app/services/database.dart';
 import 'package:m_chat_app/widgets/widget.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class ConversationScreen extends StatefulWidget {
   final String chatRoomId;
@@ -17,6 +18,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
   Stream chatMessageStream;
 
+  // ignore: non_constant_identifier_names
   Widget ChatMessageList() {
     return StreamBuilder(
       stream: chatMessageStream,
@@ -60,16 +62,37 @@ class _ConversationScreenState extends State<ConversationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarMain(context),
+      backgroundColor: HexColor("#292F40"),
+      appBar: AppBar(
+        backgroundColor: HexColor("#45485A"),
+        title: Image.asset(
+          "assets/images/lll-1154.png",
+          height: 50,
+        ),
+      ),
       body: Container(
         child: Stack(
           children: [
-            ChatMessageList(),
             Container(
+              height: MediaQuery.of(context).size.height - 155,
+              width: MediaQuery.of(context).size.width,
+              child: ChatMessageList(),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 5, right: 5, bottom: 1),
               alignment: Alignment.bottomCenter,
               child: Container(
-                color: Color(0x54FFFFFF),
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                decoration: BoxDecoration(
+                  color: HexColor("#45485A"),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(50),
+                    bottomRight: Radius.circular(50),
+                  ),
+                ),
+                // height: MediaQuery.of(context).size.height - 675,
+                // width: MediaQuery.of(context).size.width,
+                // color: Color(0x54FFFFFF),
+                padding: EdgeInsets.symmetric(horizontal: 22, vertical: 6),
                 child: Row(
                   children: [
                     Expanded(
@@ -80,6 +103,9 @@ class _ConversationScreenState extends State<ConversationScreen> {
                               hintText: 'Message...',
                               hintStyle: TextStyle(color: Colors.white54),
                               border: InputBorder.none)),
+                    ),
+                    SizedBox(
+                      width: 10,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -117,7 +143,7 @@ class MessageTile extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8),
       padding: EdgeInsets.only(
-          left: isSendByMe ? 0 : 24, right: isSendByMe ? 20 : 0),
+          left: isSendByMe ? 20 : 24, right: isSendByMe ? 20 : 20),
       width: MediaQuery.of(context).size.width,
       alignment: isSendByMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
@@ -125,8 +151,19 @@ class MessageTile extends StatelessWidget {
         decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: isSendByMe
-                  ? [const Color(0xff007EF4), const Color(0xff2A75BC)]
-                  : [const Color(0x1AFFFFFF), const Color(0x1AFFFFFF)],
+
+                  //  const Color(0xff007EF4),
+                  //   cconst Color(0xff007EF4)
+                  // ]
+                  //     : [
+                  //   const Color(0x1AFFFFFF),
+                  //   const Color(0x1AFFFFFF)
+
+                  //  ? [const Color(0xff007EF4), HexColor("#9BD1DC")]
+                  // : [HexColor("#CFD7E3"), HexColor("#686C72")],
+
+                  ? [const Color(0xff007EF4), const Color(0xff007EF4)]
+                  : [HexColor("#CFD7E3"), HexColor("#686C72")],
             ),
             borderRadius: isSendByMe
                 ? BorderRadius.only(
@@ -140,9 +177,10 @@ class MessageTile extends StatelessWidget {
         child: Text(
           message,
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 17,
-          ),
+              color: Colors.black,
+              fontWeight: FontWeight.w400,
+              fontSize: 17,
+              fontFamily: 'overpass'),
         ),
       ),
     );

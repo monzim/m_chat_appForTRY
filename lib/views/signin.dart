@@ -106,9 +106,18 @@ class _SignInState extends State<SignIn> {
                   alignment: Alignment.centerRight,
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Text(
-                      'Forgot Password?',
-                      style: simpleTexteStyle(),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ForgotPassSorry(),
+                            ));
+                      },
+                      child: Text(
+                        'Forgot Password?',
+                        style: simpleTexteStyle(),
+                      ),
                     ),
                   ),
                 ),
@@ -131,19 +140,28 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 SizedBox(height: 16),
-                Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.white,
-                  ),
-                  child: Text(
-                    'Sign in with Google',
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 17,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PageSorry(),
+                        ));
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.white,
+                    ),
+                    child: Text(
+                      'Sign in with Google',
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 17,
+                      ),
                     ),
                   ),
                 ),
