@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m_chat_app/helper/constants.dart';
 import 'package:m_chat_app/services/database.dart';
-import 'package:m_chat_app/widgets/widget.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class ConversationScreen extends StatefulWidget {
@@ -25,6 +24,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
       builder: (context, snapshot) {
         return snapshot.hasData
             ? ListView.builder(
+                reverse: false,
                 itemCount: snapshot.data.documents.length,
                 itemBuilder: (context, index) {
                   return MessageTile(

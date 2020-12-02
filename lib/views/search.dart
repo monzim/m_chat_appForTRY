@@ -66,43 +66,56 @@ class _SeachScreenState extends State<SeachScreen> {
 
   // ignore: non_constant_identifier_names
   Widget SearchTitle({String userName, String userEmail}) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      decoration: BoxDecoration(
-        color: HexColor("#FFFFFF"),
-        borderRadius: BorderRadius.only(topRight: Radius.circular(50)),
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 8,
+        left: 2,
       ),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                userName,
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-              ),
-              Text(
-                userEmail,
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-              ),
-            ],
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        decoration: BoxDecoration(
+          color: HexColor("#FFFFFF"),
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+            bottomLeft: Radius.circular(10),
           ),
-          Spacer(),
-          GestureDetector(
-            onTap: () {
-              createChatRoomAndStartConversation(userName: userName);
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(30)),
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text(
-                'Message',
-                style: mediumTexteStyle(),
+        ),
+        child: Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  userName,
+                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+                ),
+                Text(
+                  // .toString()
+                  //           .replaceAll("_", "")
+                  //           .replaceAll(Constants.myName, ""),
+                  userEmail.replaceAll("@gmail", "@"),
+                  style: TextStyle(fontWeight: FontWeight.w200, fontSize: 18),
+                ),
+              ],
+            ),
+            Spacer(),
+            GestureDetector(
+              onTap: () {
+                createChatRoomAndStartConversation(userName: userName);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(30)),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Text(
+                  'Message',
+                  style: mediumTexteStyle(),
+                ),
               ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
