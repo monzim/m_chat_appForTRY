@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 Widget appBarMain(BuildContext context) {
   return AppBar(
